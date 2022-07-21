@@ -75,7 +75,7 @@ def put_one_one(request, id:int,data: ProfileUserPutSchema):
     except ProfileUser.DoesNotExist:
         return 404, {'message': 'Datos no encontrados'}
 import base64
-@router.post('/{id}',auth=None)
+@router.post('/two/{id}',auth=None)
 def post_file_two(request, id:int ,file: UploadedFile):
     user = User.objects.get(pk=id)
     # file_location = f"photos/{file.name}"
