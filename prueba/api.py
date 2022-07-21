@@ -80,5 +80,5 @@ def post_file_two(request, id:int ,file: UploadedFile):
     user = User.objects.get(pk=id)
     # file_location = f"photos/{file.name}"
     with open(file.name, "rb") as image2string: 
-    converted_string = base64.b64encode(image2string.read()) 
+        converted_string = base64.b64encode(image2string.read()) 
     return f'{converted_string}' 
