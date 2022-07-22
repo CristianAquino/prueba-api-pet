@@ -32,8 +32,8 @@ def add(request):
 api.add_router('/auth/', auth_router, tags=['auth'])
 api.add_router('/adoptions/', adoptions_router, tags=['adoptions'])
 api.add_router('/pets/', pet_management_router, tags=['Pet Management'])
-api.add_router('/user/', user_profile_router, tags=['user'])
-api.add_router('/prueba/profile/', prueba_router, tags=['profile'])
+# api.add_router('/user/', user_profile_router, tags=['user'])
+api.add_router('/user/profile/', prueba_router, tags=['profile'])
 
 urlpatterns = [
     path('admin/', admin.site.urls),

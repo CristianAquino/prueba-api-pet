@@ -54,12 +54,12 @@ def get_one(request, id: int):
 @router.post('/{id}',auth=None)
 def post_file(request, id:int ,file: UploadedFile):
     user = User.objects.get(pk=id)
-    file_location = f"photos/{file.name}"
-    with open(file_location, "wb+") as file_object:
-        shutil.copyfileobj(file.file, file_object)
-    upload( f'{file_location}',folder = "img", public_id=f'{user.first_name}{user.last_name}')
-    os.remove(f'{file_location}')
-    return {"info": f"file '{file.name}' saved at '{file_location}'"}
+    # file_location = f"photos/{file.name}"
+    # with open(file_location, "wb+") as file_object:
+    #     shutil.copyfileobj(file.file, file_object)
+    upload( f'{file.name}',folder = "img", public_id=f'{user.first_name}{user.last_name}')
+    # os.remove(f'{file_location}')
+    return {"info": f"file '{file.name}' saved at '{file.name}'"}
 
 @router.put('/{id}',auth=None,response={200: ResponsePutSchema, 404: MessageSchema})
 def put_one_one(request, id:int,data: ProfileUserPutSchema):
