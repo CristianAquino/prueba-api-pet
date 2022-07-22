@@ -30,7 +30,7 @@ def get_all(request):
     else:
         return profile
 
-@router.get('/{id}',auth=None, response={200: GetProfileSchema, 404: MessageSchema})
+@router.get('/{id}',auth=None, response={200: List[GetProfileSchema], 404: MessageSchema})
 def get_one(request, id: int):
     try:
         profile = ProfileUser.objects.get(pk=id)
