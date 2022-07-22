@@ -57,7 +57,7 @@ def post_file(request, id:int ,file: UploadedFile):
     # file_location = f"photos/{file.name}"
     # with open(file_location, "wb+") as file_object:
     #     shutil.copyfileobj(file.file, file_object)
-    upload( f'{file.name}',folder = "img", public_id=f'{user.first_name}{user.last_name}')
+    upload( f'{file}',folder = "img", public_id=f'{user.first_name}{user.last_name}')
     # os.remove(f'{file_location}')
     return {"info": f"file '{file.name}' saved at '{file.name}'"}
 
