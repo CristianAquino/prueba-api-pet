@@ -30,13 +30,20 @@ def get_all(request):
     else:
         return profile
 
-@router.get('/{id}',auth=None, response={200: List[GetProfileSchema], 404: MessageSchema})
+# @router.get('/{id}',auth=None, response={200: GetProfileSchema, 404: MessageSchema})
+# def get_one(request, id: int):
+#     try:
+#         profile = ProfileUser.objects.get(pk=id)
+#         return 200, profile
+#     except ProfileUser.DoesNotExist:
+#         return 404, {'message': 'Datos no encontrados'}
+@router.get('/{id}',auth=None, response=List[GetProfileSchema])
 def get_one(request, id: int):
     try:
         profile = ProfileUser.objects.get(pk=id)
-        return 200, profile
+        return profile
     except ProfileUser.DoesNotExist:
-        return 404, {'message': 'Datos no encontrados'}
+        return MessageSchema
 
 # @router.put('/{id}', response={200: ResponsePutSchema, 404: MessageSchema})
 # def put_one(request, id: int, data: ProfileUserPutSchema):
