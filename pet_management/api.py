@@ -58,7 +58,7 @@ def get_by_id(request, pet_id: int):
 # agregando
 @router.get('/pet/search',auth=None,response=list[ResponsePetSchema])
 def pet_search(request,name):
-    pet = PetCategory.objects.get(name__contains=f'{name}')
+    pet = PetCategory.objects.filter(name__contains=f'{name}')
     print(pet)
     # pet = PetCategory.objects.filter(name__contains='str')
     # print(pet)
