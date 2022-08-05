@@ -1,3 +1,4 @@
+import string
 from django.shortcuts import get_object_or_404
 from ninja import Router
 
@@ -7,7 +8,7 @@ from .schema import CreatePetSchema, ResponsePetSchema, ResponsePetCategorySchem
 router = Router()
 
 
-@router.post('', response=ResponsePetSchema)
+@router.post('',auth=None, response=ResponsePetSchema)
 def create(request, payload: CreatePetSchema):
     pet_category = PetCategory.objects.get(pk=payload.pet_category)
     pet_profile = PetProfile(
@@ -30,7 +31,7 @@ def create(request, payload: CreatePetSchema):
     return pet
 
 
-@router.post('/category', response=ResponsePetCategorySchema)
+@router.post('/category',auth=None, response=ResponsePetCategorySchema)
 def create_category(request, payload: CreatePetCategorySchema):
     pet_category = PetCategory(
         name=payload.name,
@@ -40,13 +41,13 @@ def create_category(request, payload: CreatePetCategorySchema):
     return pet_category
 
 
-@router.get('/category', response=list[ResponsePetCategorySchema])
+@router.get('/category',auth=None, response=list[ResponsePetCategorySchema])
 def get_categories(request):
     pet_categories = PetCategory.objects.all()
     return pet_categories
 
 
-@router.get('/{pet_id}', response=ResponsePetSchema)
+@router.get('/{pet_id}',auth=None, response=ResponsePetSchema)
 def get_by_id(request, pet_id: int):
     if pet_id == 0:
         pet = Pet.objects.latest('id')
@@ -54,3 +55,8 @@ def get_by_id(request, pet_id: int):
     pet = get_object_or_404(Pet, id=pet_id)
     return pet
 
+# agregando
+@router.get('/pet/search',auth=None,response=list[ResponsePetSchema])
+def pet_search(request,name):
+    pet = PetCategory.objects.filter(name__icontains=f'{name}')
+    return pet
