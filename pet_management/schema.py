@@ -41,3 +41,10 @@ class ResponsePetSchema(ModelSchema):
     class Config:
         model = Pet
         model_fields = '__all__'
+
+#agregado
+class ResponsePetSearch(ModelSchema):
+    pet_profile: ResponsePetProfileSchema
+    class Config:
+        model= Pet
+        model_fields = ['name','url']

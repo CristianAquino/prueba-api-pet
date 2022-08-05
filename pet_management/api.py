@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from ninja import Router
 
 from .models import Pet, PetCategory, PetProfile
-from .schema import CreatePetSchema, ResponsePetSchema, ResponsePetCategorySchema, CreatePetCategorySchema
+from .schema import CreatePetSchema, ResponsePetSchema, ResponsePetCategorySchema, CreatePetCategorySchema, ResponsePetSearch
 
 router = Router()
 
@@ -56,10 +56,7 @@ def get_by_id(request, pet_id: int):
     return pet
 
 # agregando
-@router.get('/pet/search',auth=None,response=list[ResponsePetSchema])
+@router.get('/pet/search',auth=None, response=list[ResponsePetSearch])
 def pet_search(request,name):
-    pet = PetCategory.objects.filter(name__contains=f'{name}')
-    print(pet)
-    # pet = PetCategory.objects.filter(name__contains='str')
-    # print(pet)
+    pet = Pet.objects.filter(name__contains=f'{name}')
     return pet
