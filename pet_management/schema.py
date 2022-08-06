@@ -1,3 +1,4 @@
+from pyexpat import model
 from ninja import ModelSchema
 
 from .models import Pet, PetCategory, PetProfile
@@ -43,8 +44,12 @@ class ResponsePetSchema(ModelSchema):
         model_fields = '__all__'
 
 #agregado
+class ResponsePet(ModelSchema):
+    class Config:
+        model = PetProfile
+        model_fields = ['gender','age','location']
 class ResponsePetSearch(ModelSchema):
-    pet_profile: ResponsePetProfileSchema
+    pet_profile: ResponsePet
     class Config:
         model= Pet
         model_fields = ['name','url']
