@@ -11,9 +11,9 @@ import cloudinary.api
 
 import cloudinary
 cloudinary.config( 
-  cloud_name = "ded9hy8uj", 
-  api_key = "713916638845124", 
-  api_secret = "byA-BG2F6ugDBqNRbQpwBG4FwXo",
+  cloud_name = os.getenv('CLOUD_NAME'), 
+  api_key = os.getenv('API_KEY'), 
+  api_secret = os.getenv('API_SECRET'),
 )
 
 from .models import ProfileUser
