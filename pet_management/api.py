@@ -58,5 +58,5 @@ def get_by_id(request, pet_id: int):
 # agregando
 @router.get('/pet/search',auth=None, response=list[ResponsePetSearch])
 def pet_search(request,name):
-    pet = Pet.objects.filter(name__contains=f'{name}')
+    pet = Pet.objects.filter(name__icontains=f'{name}')
     return pet
