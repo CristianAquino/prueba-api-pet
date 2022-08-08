@@ -47,9 +47,9 @@ class ResponsePetSchema(ModelSchema):
 class ResponsePet(ModelSchema):
     class Config:
         model = PetProfile
-        model_fields = ['gender','age','location']
+        model_fields = ['id','gender','age','location']
 class ResponsePetSearch(ModelSchema):
     pet_profile: ResponsePet
     class Config:
         model= Pet
-        model_fields = ['name','url']
+        model_fields = ['id','name','url']
