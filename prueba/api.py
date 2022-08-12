@@ -68,8 +68,8 @@ def put_one_one(request, id:int,data: ProfileUserPutSchema):
         profile.phone = data.phone
         profile.address = data.address
         profile.about = data.about
-        new_img = cloudinary.api.resources_by_ids(f'img/{profile.user.first_name}{profile.user.last_name}')['resources'][0]
-        profile.image = new_img['url']
+        # new_img = cloudinary.api.resources_by_ids(f'img/{profile.user.first_name}{profile.user.last_name}')['resources'][0]
+        # profile.image = new_img['url']
         profile.save()
         return 200, profile
     except ProfileUser.DoesNotExist:
