@@ -13,7 +13,7 @@ def token(request,userLogin:LoginUserSchema):
     user = authenticate(username=userLogin.username,password=userLogin.password)
     if user is not None:
         access_token = create_access_token(data={"sub": user.email})
-        return {"access_token": access_token, "token_type": "bearer"}
+        return {"access_token": access_token, "token_type": "bearer","id_user":user.id}
     else:
         raise HttpError(404, "Invalid Credentials")
 
